@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A tea beverage item available for order.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the tea beverage."
+        },
+        "price": {
+          "type": "number",
+          "description": "The price of the beverage."
+        },
+        "image": {
+          "type": "string",
+          "description": "URL or identifier for the product image."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the beverage (e.g., caffeine-free)."
+        }
+      },
+      "required": ["name", "price"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "An order placed by a customer.",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "The name of the customer who placed the order."
+        },
+        "items": {
+          "type": "array",
+          "description": "List of items in the order."
+        },
+        "totalPrice": {
+          "type": "number",
+          "description": "Total cost of the order."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the order (pending, preparing, completed, cancelled)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the order was placed."
+        }
+      },
+      "required": ["customerName", "items", "totalPrice", "status", "createdAt"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "System settings, including the admin password.",
+      "type": "object",
+      "properties": {
+        "adminPassword": {
+          "type": "string",
+          "description": "The password for admin access."
+        },
+        "adminPasswordSet": {
+          "type": "boolean",
+          "description": "Whether the admin password has been initialized."
+        }
+      }
+    }
+  },
+  "firestore": {
+    "products": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Collection of tea beverage products."
+    },
+    "orders": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Collection of customer orders."
+    },
+    "settings": {
+      "schema": { "$ref": "#/entities/Settings" },
+      "description": "Global settings for the application."
+    }
+  }
+}
